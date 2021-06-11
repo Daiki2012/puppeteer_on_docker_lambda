@@ -36,7 +36,8 @@ async function lambdaHandler(event, context) {
   const page = await browser.newPage();
   newTabSubsegment.close();
   console.info('opened new tab');
-  let extractedText = '';
+  //let extractedText = '';
+  let bodyText = '';
   try {
     const pageGotoSubsegment = createNewSubsegment('opening url');
     await page.goto(event.url, {
@@ -45,10 +46,12 @@ async function lambdaHandler(event, context) {
     });
     pageGotoSubsegment.close();
     console.info('page opened');
-    const textExtractSubsegment = createNewSubsegment('extracting text');
-    extractedText = await page.$eval('*', (el) => el.innerText);
-    textExtractSubsegment.close();
-    console.info('text extracted');
+    const pdfSubsegment = createNewSubsegment('pdf created');
+		//extractedText = await page.$eval('*', (el) => el.innerText);
+  	const stream = await page.pdf();
+    bodyText = stream.toString("base64");
+    pdfSubsegment.close();
+    console.info('pdf created');
   } finally {
     console.info('finally');
     await page.close();
@@ -56,7 +59,15 @@ async function lambdaHandler(event, context) {
     await browser.close();
     console.info('browser closed');
   }
-  return extractedText;
+  //return extractedText;
+  return {
+    statusCode: 200,
+    isBase64Encoded: true,
+    headers: {
+      "Content-type": "application/pdf"
+    },
+    body: bodyText
+  };
 }
 
 module.exports = { handler: lambdaHandler };
