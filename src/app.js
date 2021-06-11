@@ -1,7 +1,3 @@
-const AWSXRay = require('aws-xray-sdk-core');
-
-AWSXRay.setLogger(console);
-
 async function launchBrowser() {
   try { // for aws-based image
     const chromium = require('chrome-aws-lambda');
@@ -19,38 +15,23 @@ async function launchBrowser() {
   }
 }
 
-function createNewSubsegment(subsegmentName) {
-  const segment = AWSXRay.getSegment();
-  if (!segment) return { close() { } };
-  return segment.addNewSubsegment(subsegmentName);
-}
-
 async function lambdaHandler(event, context) {
   console.info(`EVENT ${JSON.stringify(event, null, 2)}`);
-  AWSXRay.setContextMissingStrategy('LOG_ERROR');
-  const browserLaunchSubsegment = createNewSubsegment('browser launch');
   const browser = await launchBrowser();
-  browserLaunchSubsegment.close();
   console.info('browser launched');
-  const newTabSubsegment = createNewSubsegment('open new tab');
   const page = await browser.newPage();
-  newTabSubsegment.close();
   console.info('opened new tab');
   //let extractedText = '';
   let bodyText = '';
   try {
-    const pageGotoSubsegment = createNewSubsegment('opening url');
     await page.goto(event.url, {
       waitUntil: 'networkidle0',
       timeout: 10 * 1000,
     });
-    pageGotoSubsegment.close();
     console.info('page opened');
-    const pdfSubsegment = createNewSubsegment('pdf created');
 		//extractedText = await page.$eval('*', (el) => el.innerText);
   	const stream = await page.pdf();
     bodyText = stream.toString("base64");
-    pdfSubsegment.close();
     console.info('pdf created');
   } finally {
     console.info('finally');
