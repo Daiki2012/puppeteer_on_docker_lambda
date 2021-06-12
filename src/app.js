@@ -29,7 +29,6 @@ async function lambdaHandler(event, context) {
       timeout: 10 * 1000,
     });
     console.info('page opened');
-		//extractedText = await page.$eval('*', (el) => el.innerText);
   	const stream = await page.pdf();
     bodyText = stream.toString("base64");
     console.info('pdf created');
@@ -40,13 +39,11 @@ async function lambdaHandler(event, context) {
     await browser.close();
     console.info('browser closed');
   }
-  //return extractedText;
+	// return base64 data
   return {
     statusCode: 200,
     isBase64Encoded: true,
-    headers: {
-      "Content-type": "application/pdf"
-    },
+    headers: { "Content-type": "application/pdf" },
     body: bodyText
   };
 }
