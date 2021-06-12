@@ -5,8 +5,8 @@ Japanese article:
 ## Motivation
 Wanted to create a service for web scraping and testing. The service should take an url as an input, and wait for the page to fully-loaded and convert html page to a pdf. 
 
-## Identifying the Best Approach
-If I want to convert a html to pdf, there are several options. Easiest solution would be using a js library. Light weight, and quit easy to manage. The problem with this approch is flexibility. Taking screenshot is ok, but if you want to reuse the function for differnet purpose (web scraping etc), then this does not work. Furthermore, since this is not taking the actual screenshot, instead converting DOM to canvas, there are some known issues. If you are interested in js library, check this. [html2canvas](https://github.com/niklasvh/html2canvas)
+## Identifying Best Approach
+If I want to convert a html to pdf, there are several options. Easiest solution would be using a js library. It is light weight, and easy to manage. The problem with this approch is flexibility. Taking screenshot is ok, but if you want to reuse the function for differnet purpose (web scraping etc), then this does not work. Furthermore, since this is not taking the actual screenshot, instead converting DOM to canvas, there are some known issues. If you are interested in js library, check this. [html2canvas](https://github.com/niklasvh/html2canvas)
 
 [Puppeteer](https://github.com/puppeteer/puppeteer) can control Headless Chrome, and access to Chrome DevTools, it has more potential to use this in various projects. This is the reason why Puppeteer was selected. To minimize the onging cost, I decided to use AWS serverless solution, Lambda. 
 

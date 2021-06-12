@@ -1,5 +1,5 @@
 async function launchBrowser() {
-  try { // for aws-based image
+  try {
     const chromium = require('chrome-aws-lambda');
     console.info('launching chrome-aws-lambda browser');
     const browser = await chromium.puppeteer.launch({
@@ -10,7 +10,7 @@ async function launchBrowser() {
       ignoreHTTPSErrors: true,
     });
     return browser;
-  } catch (e) { // for custom-built image
+  } catch (e) {
     console.info('launching puppeteer browser');
   }
 }
@@ -21,7 +21,6 @@ async function lambdaHandler(event, context) {
   console.info('browser launched');
   const page = await browser.newPage();
   console.info('opened new tab');
-  //let extractedText = '';
   let bodyText = '';
   try {
     await page.goto(event.url, {
