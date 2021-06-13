@@ -15,10 +15,12 @@ To control Headless Chrome on Lambda, [chrome-aws-lambda](https://github.com/ali
 ## Why use Docker and ECS
 AWS annoucneed contaienr image suport for Lambda in 2020 Dec. This means that you can build Docker image locally with AWS Lambda image, and add your custom scirpts to it. Previously, it was hard to develop, test and deploy Lambda functions, but with the Container image support, this will be streamlined.  
 
+In previous years, using Serverless Framework was considered to be the best approach. (See Reference 1). However, Serverless Framework relies on the local enviornment setting, and if you have multiple projects, sometimes it is hard to manage. Thus, using the Docker container and use AWS Lambda Runtime Emulator, you can simulate AWS Lambda environment locally, and this makes it easier for developers to test.   
+
 ## Prerequisite
 Docker Desktop (Mac OS Recommended. Shell scripts in this repo was tested only on Mac)
-- AWS account and for S3, ECS, Lambda
-- Basics understanding in Docker, SAM and ECS
+- AWS account
+- Basics understanding in Lambda, Docker, SAM, CloudFormation and ECS
 [setup AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) for deloyment
 [SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html).
 
@@ -48,6 +50,7 @@ All deploy steps are in
 `deploy/deploy_with_sam.sh`
 
 ## References
-[Puppeteer on AWS Lambda で日本語対応したキャプチャを撮影してS3にアップロードするまでの設定](https://qiita.com/zyyx-matsushita/items/c33f79e33f242395019e)
-[HTML to PDF using a Chrome puppet in the cloud](https://morioh.com/p/d8043f7defbf)
+1 - [Generate a PDF in AWS Lambda with NodeJS, Webpack, Pug and Puppeteer](https://dev.to/zeka/generate-a-pdf-in-aws-lambda-with-nodejs-webpack-pug-and-puppeteer-4g59)
+2 - [Puppeteer on AWS Lambda で日本語対応したキャプチャを撮影してS3にアップロードするまでの設定](https://qiita.com/zyyx-matsushita/items/c33f79e33f242395019e)
+3 - [HTML to PDF using a Chrome puppet in the cloud](https://morioh.com/p/d8043f7defbf)
 
