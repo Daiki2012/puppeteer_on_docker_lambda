@@ -5,10 +5,10 @@ echo "Deploy docker image: ${IMAGE_NAME}"
 REGION=$(aws configure get region)
 echo "Use region: ${REGION}"
 ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
-echo "Use account id ${ACCOUNT_ID}"
+echo "Use account id: ${ACCOUNT_ID}"
 IMAGE_URI="${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com/${IMAGE_NAME}:$(date +%s)"
 S3_BUCKET="${IMAGE_NAME}-sam-temp-delete-later"
-
+echo "Create s3 and ECR for cloudformation"
 aws s3api create-bucket --bucket ${S3_BUCKET} --region "${REGION}" --create-bucket-configuration "LocationConstraint=${REGION}" || true
 aws ecr create-repository --repository-name ${IMAGE_NAME} --region "${REGION}" || true
 aws ecr get-login-password --region "${REGION}" | docker login --username AWS --password-stdin "${ACCOUNT_ID}.dkr.ecr.${REGION}.amazonaws.com"
