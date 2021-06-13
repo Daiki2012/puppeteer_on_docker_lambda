@@ -32,7 +32,7 @@ Docker Desktop (Mac OS Recommended. Shell scripts in this repo was tested only o
 ## Packages
 ---
 You need to select appropriate versions for each. As the [chrome-aws-lambda](https://github.com/alixaxel/chrome-aws-lambda) package depends on the underlying puppeteer version.
-```
+```shell
 chrome-aws-lambda@10.0.0 
 puppeteer-core@10.0.0
 ```
@@ -41,19 +41,19 @@ puppeteer-core@10.0.0
 ---
 You need to setup docker, and download aws-lambda-rie binaries 
 ```shell
-`./get_lambda_rie.sh`
+./get_lambda_rie.sh
 ```
 
 #### Create Docker image
 This contains 2 docker commands. Docker build and run. Docker image is created, and localhost:9000 will be used as a port.
 ```shell
-`./docker_build_run.sh`
+./docker_build_run.sh
 ```
 
 #### Test running image locally
 From terminal or Postman, execute below. Make sure to specify your favorite website. This will return base64 data. The data can be converted to pdf file with a site such as [Base64Guru](https://base64.guru/converter/decode/pdf)
 ```shell
-`curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"url": "https://yourfavoritesite.com"}'`
+curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{"url": "https://yourfavoritesite.com"}'
 ```
 
 ## Deploy to AWS
