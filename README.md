@@ -61,7 +61,7 @@ From terminal or Postman, execute below. Make sure to specify your favorite webs
 Before execution, make sure to set credentials and region in AWS cli config files. The file defines the s3 bucket. Make sure the name is unique. 
 All deploy steps are in
 ```shell
-`deploy/deploy_with_sam.sh`
+deploy/deploy_with_sam.sh
 ```
 
 ## References
