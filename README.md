@@ -3,7 +3,7 @@ This AWS Lambda function receives an url and Puppeteer renders the web page on H
 Japanese article:
 
 ## Motivation
----
+----
 Wanted to create a service for web scraping and testing. The service should take an url as an input, and wait for the page to fully-loaded and convert html page to a pdf. 
 
 ## Identifying Best Approach
