@@ -1,6 +1,6 @@
 # Take screenshot and convert to pdf with Puppeteer on Docker Lambda
 This AWS Lambda function receives an url and Puppeteer renders the web page on Headless Chrome and convert it to a pdf file. Base64 pdf data will be returned. 
-Japanese article:
+Japanese article: [Docker Lambda上でPuppeteerを使いhtmlをpdfに変換する](https://qiita.com/Daiki2012/items/49c19435263136054992)
 
 ## Motivation
 ----
@@ -18,7 +18,7 @@ To control Headless Chrome on Lambda, [chrome-aws-lambda](https://github.com/ali
 ---
 AWS annoucneed contaienr image suport for Lambda in 2020 Dec. This means that you can build Docker image locally with AWS Lambda image, and add your custom scirpts to it. Previously, it was hard to develop, test and deploy Lambda functions, but with the Container image support, this will be streamlined.  
 
-In previous years, using Serverless Framework was considered to be the best approach. (See Reference below). However, Serverless Framework relies on the local enviornment setting, and if you have multiple projects, sometimes it is hard to manage. Thus, using the Docker container and use AWS Lambda Runtime Emulator, you can simulate AWS Lambda environment locally, and this makes it easier for developers to test.   
+In previous years, using [Serverless Framework] (https://www.serverless.com/) was considered to be the best approach. (See Reference below). However, Serverless Framework relies on the local enviornment setting, and if you have multiple projects, sometimes it is hard to manage. Thus, using the Docker container and use AWS Lambda Runtime Emulator, you can simulate AWS Lambda environment locally, and this makes it easier for developers to test.   
 
 ## Prerequisite
 ---
@@ -69,4 +69,11 @@ deploy/deploy_with_sam.sh
 1. [Generate a PDF in AWS Lambda with NodeJS, Webpack, Pug and Puppeteer](https://dev.to/zeka/generate-a-pdf-in-aws-lambda-with-nodejs-webpack-pug-and-puppeteer-4g59)
 2. [Puppeteer on AWS Lambda で日本語対応したキャプチャを撮影してS3にアップロードするまでの設定](https://qiita.com/zyyx-matsushita/items/c33f79e33f242395019e)
 3. [HTML to PDF using a Chrome puppet in the cloud](https://morioh.com/p/d8043f7defbf)
+
+
+
+
+
+
+
 
