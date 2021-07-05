@@ -1,6 +1,14 @@
 # Take screenshot and convert to pdf with Puppeteer on Docker Lambda
 This AWS Lambda function receives an url and Puppeteer renders the web page on Headless Chrome and convert it to a pdf file. Base64 pdf data will be returned. 
 Japanese article: [Docker Lambda上でPuppeteerを使いhtmlをpdfに変換する](https://qiita.com/Daiki2012/items/49c19435263136054992)
+## Prerequisite
+----
+Require these basic knowledge:
+1. AWS Lambda
+2. Docker
+3. API Gateway
+4. Puppeteer
+5. AWS CloudFormation
 
 ## Motivation
 ----
